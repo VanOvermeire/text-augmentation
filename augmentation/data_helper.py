@@ -14,8 +14,10 @@ def _split_sentences_on_period(example):
 
 
 def _clean(data):
-    # we can't handle ; since we use that to separate data from labels
-    # also remove linebreaks, tabs and multiple spaces which might cause issues as well
+    """ Cleans our data
+        We can't handle ';' since we use that to separate data from labels
+        Also remove linebreaks, tabs and multiple spaces which might cause issues too
+    """
     first_clean = [d.replace(';', ' ').replace('\n', '').replace('\t', '').strip() for d in data]
     return [re.sub(' {2,}', ' ', elem) for elem in first_clean]
 

@@ -5,7 +5,7 @@ from augmentation.data_helper import _clean
 
 # TODO more tests, check naming
 class CheckTest(unittest.TestCase):
-    def test(self):
+    def test_clean(self):
         filthy_data = ['this has  spaces', 'this \n a newline', 'a \t', 'a ; which we do not want', 'and \n this has; multiple  issues ']
 
         results = _clean(filthy_data)
@@ -15,7 +15,3 @@ class CheckTest(unittest.TestCase):
         self.assertEqual(results[2], 'a')
         self.assertEqual(results[3], 'a which we do not want')
         self.assertEqual(results[4], 'and this has multiple issues')
-
-
-if __name__ == '__main__':
-    unittest.main()

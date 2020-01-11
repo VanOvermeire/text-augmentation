@@ -1,1 +1,3 @@
 PERIOD = '.'
+NEWLINE = '\n'
+EMPTY_STRING = ''
