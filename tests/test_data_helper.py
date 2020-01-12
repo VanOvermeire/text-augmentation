@@ -1,7 +1,7 @@
 import unittest
 
 
-from augmentation.data_helper import _is_not_empty_or_newline, _split_sentences_on_period
+from augmentation.data_helper import _is_not_empty_or_newline, _split_sentences_on_period, shuffle
 
 
 # TODO more tests

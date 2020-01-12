@@ -1,7 +1,8 @@
 import random
+from typing import List
 
-from augmentation.constants import PERIOD, NEWLINE, EMPTY_STRING
-from augmentation.data_helper import check_and_retrieve, _split_sentences_on_period
+from augmentation.constants import PERIOD
+from augmentation.data_helper import check_and_retrieve, _split_sentences_on_period, shuffle
 
 
 def _contains_augmentation_information(example):
@@ -70,7 +71,7 @@ def _separate_into_classes(data, labels):
     return results
 
 
-def augment(data=None, labels=None, data_location=None, labels_location=None, rounds=1):
+def augment(data: List[str] = None, labels: List[str] = None, data_location: str = None, labels_location: str = None, rounds: int = 1):
     # TODO checks rounds, offer possibility to only augment some classes
     retrieved_data, retrieved_labels = check_and_retrieve(data, labels, data_location, labels_location)
     unshuffled_data = []
@@ -80,12 +81,11 @@ def augment(data=None, labels=None, data_location=None, labels_location=None, ro
         data_per_class = _separate_into_classes(retrieved_data, retrieved_labels)
 
         for k, v in data_per_class.items():
-            unshuffled_data.append(v)
-            unshuffled_labels.append(k)
+            unshuffled_data.extend(v)
+            unshuffled_labels.extend([k for x in v])
 
             augmented = _augment_data_for(v)
-            unshuffled_data.append(augmented)
-            unshuffled_labels.append([k for x in augmented])
+            unshuffled_data.extend(augmented)
+            unshuffled_labels.extend([k for x in augmented])
 
-    # TODO shuffle
-    return unshuffled_data
+    return shuffle(unshuffled_data, unshuffled_labels)
