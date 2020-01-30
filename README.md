@@ -2,7 +2,9 @@
 
 Uses your existing text data to generate additional (augmented) examples, improving validation accuracy on (small) datasets.
 
-See this blog post for more information.
+Demonstration code for [this][1] blog post.
+
+[1]: https://www.linkedin.com/pulse/augmenting-text-data-sam-van-overmeire/
 
 ## Usage
 
